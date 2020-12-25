@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="image/x-ico" href="favicon.ico"/>
+    <link rel="manifest" href="manifest.json">
+    <title>IMC</title>
+    <style>
+        #d {
+            margin: 20px auto; 
+        }
+
+        body {
+            background-color: #81BEF7;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .a {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .b {
+            width: 49%;
+        }
+
+        .bt {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container center">
+        <div id="d" class="col-sm-6">
+            <form class="form-signin">
+                <div class="text-center">
+                    <h1 class="h3 mb-3 font-weight-normal">Cálculo de IMC <span><img src="imagem.png" alt=""></span></h1>
+                </div>
+            
+                <div class="form-group">
+                    <label for="altura">Altura</label>
+                    <input type="text" id="altura" class="form-control" placeholder="Digite sua altura em m" autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="peso">Peso</label>
+                    <input type="Text" id="peso" class="form-control" placeholder="Digite seu peso em Kg">
+                </div>
+
+                <div class="form-group bt">
+                    <input type="button" class="btn btn-primary b" onclick="javascript:calculo();" name="name" value="Calcular">
+                    <input type="button" class="btn btn-secondary b" onclick="javascript:limpar();" name="name" value="Limpar">
+                </div>
+
+                <div id="alert">
+
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover table-condensed tabela">
+                        <thead>
+                            <th>IMC</th>
+                            <th>CLASSIFICAÇÃO</th>
+                            <th id='t'></th>
+                        </thead>
+                        <tbody>
+                            <tr id="m">
+                                <td>Menor que 18,5</td>
+                                <td>MAGREZA</td>
+                                <td id="mm"></td>
+                            </tr>
+                            <tr id="n">
+                                <td>Entre 18,5 e 24,9</td>
+                                <td>NORMAL</td>
+                                <td id="nn"></td>
+                            </tr>
+                            <tr id="s">
+                                <td>Entre 25 e 29,9</td>
+                                <td>SOBREPESO</td>
+                                <td id="ss"></td>
+                            </tr>
+                            <tr id="o1">
+                                <td>Entre 30 e 34,9</td>
+                                <td>OBESIDADE I</td>
+                                <td id="o"></td>
+                            </tr>
+                            <tr id="o2">
+                                <td>Entre 35 e 39,9</td>
+                                <td>OBESIDADE II</td>
+                                <td id="oo"></td>
+                            </tr>
+                            <tr id="o3">
+                                <td>Maior que 40</td>
+                                <td>OBESIDADE III</td>
+                                <td id="ooo"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#altura").maskMoney({allowNegative: true, thousands:'.', decimal:',', affixesStay: false})
+        })
+
+        function calculo() {
+            document.getElementById("m").className = ''
+            document.getElementById("n").className = ''
+            document.getElementById("s").className = ''
+            document.getElementById("o1").className = ''
+            document.getElementById("o2").className = ''
+            document.getElementById("o3").className = ''
+
+            var peso = document.getElementById('peso').value
+            peso = peso.replace(",", ".")
+            var altura = document.getElementById('altura').value
+            altura = altura.replace(",", "")
+            
+            var imc = parseFloat(10000 * (peso / (altura * altura)));
+            imc = parseFloat(imc.toFixed(1));
+
+            if (imc <= 18.49) {
+                document.getElementById("alert").innerHTML = `Seu imc é <strong>${imc}</strong>.`
+                document.getElementById("alert").className = 'alert alert-danger a'
+                document.getElementById("m").className = 'alert alert-danger'
+            }
+            if (imc >= 18.5 && imc <= 24.99) {
+                document.getElementById("alert").innerHTML = `Seu imc é <strong>${imc}</strong>.`
+                document.getElementById("alert").className = 'alert alert-success a'
+                document.getElementById("n").className = 'alert alert-success'
+            }
+            if (imc >= 25 && imc <= 29.99) {
+                document.getElementById("alert").innerHTML = `Seu imc é <strong>${imc}</strong>.`
+                document.getElementById("alert").className = 'alert alert-warning a'
+                document.getElementById("s").className = 'alert alert-warning'
+            }
+            if (imc >= 30 && imc <= 34.99) {
+                document.getElementById("alert").innerHTML = `Seu imc é <strong>${imc}</strong>.`
+                document.getElementById("alert").className = 'alert alert-info a'
+                document.getElementById("o1").className = 'alert alert-info'
+            }
+            if (imc >= 35 && imc <= 39.99) {
+                document.getElementById("alert").innerHTML = `Seu imc é <strong>${imc}</strong>.`
+                document.getElementById("alert").className = 'alert alert-dark a'
+                document.getElementById("o2").className = 'alert alert-dark'
+            }
+            if (imc >= 40) {
+                document.getElementById("alert").innerHTML = `Seu imc é <strong>${imc}</strong>.`
+                document.getElementById("alert").className = 'alert alert-danger a'
+                document.getElementById("o3").className = 'alert alert-danger'
+            }
+
+            var m1 = parseFloat((18.5 * (altura * altura)) / 10000)
+            m1 = parseFloat(m1.toFixed(1))
+            document.getElementById('mm').innerHTML = `0 - ${m1}`
+            
+            var n1 = parseFloat((18.5 * (altura * altura)) / 10000)
+            n1 = parseFloat(n1.toFixed(1))
+            var n2 = parseFloat((25 * (altura * altura)) / 10000)
+            n2 = parseFloat(n2.toFixed(1))
+            document.getElementById('nn').innerHTML = `${n1} - ${n2}`
+            
+            var s1 = parseFloat((25 * (altura * altura)) / 10000)
+            s1 = parseFloat(s1.toFixed(1))
+            var s2 = parseFloat((30 * (altura * altura)) / 10000)
+            s2 = parseFloat(s2.toFixed(1))
+            document.getElementById('ss').innerHTML = `${s1} - ${s2}`
+            
+            var oo1 = parseFloat((30 * (altura * altura)) / 10000)
+            oo1 = parseFloat(oo1.toFixed(1))
+            var oo2 = parseFloat((35 * (altura * altura)) / 10000)
+            oo2 = parseFloat(oo2.toFixed(1))
+            document.getElementById('o').innerHTML = `${oo1} - ${oo2}`
+
+            var oo3 = parseFloat((35 * (altura * altura)) / 10000)
+            oo3 = parseFloat(oo3.toFixed(1))
+            var oo4 = parseFloat((40 * (altura * altura)) / 10000)
+            oo4 = parseFloat(oo4.toFixed(1))
+            document.getElementById('oo').innerHTML = `${oo3} - ${oo4}`
+
+            var oo5 = parseFloat((40 * (altura * altura)) / 10000)
+            oo5 = parseFloat(oo5.toFixed(1))
+            document.getElementById('ooo').innerHTML = `< - ${oo5}`
+
+            document.getElementById('t').innerHTML = `PESO`
+        }
+
+        function limpar() {
+            document.getElementById('peso').value=''
+            document.getElementById('altura').value=''
+            document.getElementById("alert").innerHTML = ``
+            document.getElementById("alert").className = ''
+            document.getElementById("m").className = ''
+            document.getElementById("n").className = ''
+            document.getElementById("s").className = ''
+            document.getElementById("o1").className = ''
+            document.getElementById("o2").className = ''
+            document.getElementById("o3").className = ''
+            document.getElementById('altura').focus()
+        }
+    </script>    
+</body>
+</html>
