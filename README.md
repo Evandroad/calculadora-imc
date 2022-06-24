@@ -9,11 +9,11 @@ To calculate the BMI (body mass index) it is only necessary to enter the weight 
 To clone the project with SSH:
 
 ```
-git clone git@github.com:evandroad/imc.git
+git clone git@github.com:evandroad/bmi.git
 ```
 
 To clone the project with HTTP:
 
 ```
-git clone https://github.com/evandroad/imc.git
+git clone https://github.com/evandroad/bmi.git
 ```
