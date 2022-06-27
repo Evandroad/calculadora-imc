@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="shortcut icon" type="image/x-ico" href="favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-ico" href="assets/favicon.ico"/>
     <link rel="manifest" href="manifest.json">
     <title>IMC</title>
     <style>
@@ -16,13 +16,14 @@
         }
 
         body {
-            background-color: #81BEF7;
+            background-color: #e6e6e6;
         }
-
+        
         form {
-            background-color: white;
+            background-color: #F7f7f7;
             padding: 20px;
             border-radius: 15px;
+            box-shadow: 2px 2px 10px #00000040;
         }
 
         .a {
@@ -37,6 +38,10 @@
         .bt {
             text-align: center;
         }
+
+        table {
+            margin-top: 20px
+        }
     </style>
 </head>
 <body>
@@ -44,17 +49,20 @@
         <div id="d" class="col-sm-6">
             <form class="form-signin">
                 <div class="text-center">
-                    <h1 class="h3 mb-3 font-weight-normal">Cálculo de IMC <span><img src="imagem.png" alt=""></span></h1>
+                    <h1 class="h3 mb-3 font-weight-normal">
+                        <span><img src="assets/imagem.png" alt="" width="50"></span>
+                        Cálculo de IMC
+                    </h1>
                 </div>
             
                 <div class="form-group">
                     <label for="altura">Altura</label>
-                    <input type="text" id="altura" class="form-control" placeholder="Digite sua altura em m" autofocus>
+                    <input type="text" id="altura" class="form-control form-control-sm" placeholder="Digite sua altura em m" autofocus>
                 </div>
 
                 <div class="form-group">
                     <label for="peso">Peso</label>
-                    <input type="Text" id="peso" class="form-control" placeholder="Digite seu peso em Kg">
+                    <input type="Text" id="peso" class="form-control form-control-sm" placeholder="Digite seu peso em Kg">
                 </div>
 
                 <div class="form-group bt">
@@ -62,12 +70,10 @@
                     <input type="button" class="btn btn-secondary b" onclick="javascript:limpar();" name="name" value="Limpar">
                 </div>
 
-                <div id="alert">
-
-                </div>
+                <div id="alert"></div>
 
                 <div class="table-responsive">
-                    <table class="table table-hover table-condensed tabela">
+                    <table class="table table-sm table-hover table-condensed tabela">
                         <thead>
                             <th>IMC</th>
                             <th>CLASSIFICAÇÃO</th>

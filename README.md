@@ -1,10 +1,10 @@
-# Calculator BMI
+# :balance_scale: Calculator BMI
 
-To calculate the BMI (body mass index) it is only necessary to enter the weight and height of the person who wants to know the BMI.
+:memo: To calculate the BMI (body mass index) it is only necessary to enter the weight and height of the person who wants to know the BMI.
 
-[Click here](https://calcularimc.netlify.app/) to use.
+:point_right: [Click here](https://calcularimc.netlify.app/) to use.
 
-![screenshot](video.gif)
+![screenshot](assets/demo.gif)
 
 To clone the project with SSH:
 
