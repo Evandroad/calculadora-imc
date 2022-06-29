@@ -7,9 +7,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="shortcut icon" type="image/x-ico" href="assets/favicon.ico"/>
+    <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/color/96/000000/bmi.png"/>
     <link rel="manifest" href="manifest.json">
-    <title>IMC</title>
+    <title>BMI</title>
     <style>
         #d {
             margin: 20px auto; 
@@ -42,6 +42,14 @@
         table {
             margin-top: 20px
         }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #author {
+            margin-top: 20px;
+            color: rgb(65, 65, 65);
+        }
     </style>
 </head>
 <body>
@@ -50,24 +58,28 @@
             <form class="form-signin">
                 <div class="text-center">
                     <h1 class="h3 mb-3 font-weight-normal">
-                        <span><img src="assets/imagem.png" alt="" width="50"></span>
-                        Cálculo de IMC
+                        <img src="https://img.icons8.com/color/96/000000/bmi.png"/>
+                        BMI Calculator
                     </h1>
                 </div>
-            
-                <div class="form-group">
-                    <label for="altura">Altura</label>
-                    <input type="text" id="altura" class="form-control form-control-sm" placeholder="Digite sua altura em m" autofocus>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="width: 80px">Height:</span>
+                    </div>
+                    <input type="text" id="altura" class="form-control" placeholder="Enter your height in meters" autofocus>
                 </div>
 
-                <div class="form-group">
-                    <label for="peso">Peso</label>
-                    <input type="Text" id="peso" class="form-control form-control-sm" placeholder="Digite seu peso em Kg">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="width: 80px">Weight:</span>
+                    </div>
+                    <input type="text" id="peso" class="form-control" placeholder="Enter your weight in Kilograms">
                 </div>
 
                 <div class="form-group bt">
-                    <input type="button" class="btn btn-primary b" onclick="javascript:calculo();" name="name" value="Calcular">
-                    <input type="button" class="btn btn-secondary b" onclick="javascript:limpar();" name="name" value="Limpar">
+                    <input type="button" class="btn btn-primary b" onclick="javascript:calculo();" name="name" value="Calculate">
+                    <input type="button" class="btn btn-secondary b" onclick="javascript:limpar();" name="name" value="Clean">
                 </div>
 
                 <div id="alert"></div>
@@ -75,39 +87,39 @@
                 <div class="table-responsive">
                     <table class="table table-sm table-hover table-condensed tabela">
                         <thead>
-                            <th>IMC</th>
-                            <th>CLASSIFICAÇÃO</th>
+                            <th>BMI</th>
+                            <th>CLASSIFICATION</th>
                             <th id='t'></th>
                         </thead>
                         <tbody>
                             <tr id="m">
-                                <td>Menor que 18,5</td>
-                                <td>MAGREZA</td>
+                                <td>LESS THAN 18,5</td>
+                                <td>THINNESS</td>
                                 <td id="mm"></td>
                             </tr>
                             <tr id="n">
-                                <td>Entre 18,5 e 24,9</td>
+                                <td>BETWEEN 18,5 e 24,9</td>
                                 <td>NORMAL</td>
                                 <td id="nn"></td>
                             </tr>
                             <tr id="s">
-                                <td>Entre 25 e 29,9</td>
-                                <td>SOBREPESO</td>
+                                <td>BETWEEN 25 e 29,9</td>
+                                <td>OVER WEIGHT</td>
                                 <td id="ss"></td>
                             </tr>
                             <tr id="o1">
-                                <td>Entre 30 e 34,9</td>
-                                <td>OBESIDADE I</td>
+                                <td>BETWEEN 30 e 34,9</td>
+                                <td>OBESITY I</td>
                                 <td id="o"></td>
                             </tr>
                             <tr id="o2">
-                                <td>Entre 35 e 39,9</td>
-                                <td>OBESIDADE II</td>
+                                <td>BETWEEN 35 e 39,9</td>
+                                <td>OBESITY II</td>
                                 <td id="oo"></td>
                             </tr>
                             <tr id="o3">
-                                <td>Maior que 40</td>
-                                <td>OBESIDADE III</td>
+                                <td>BIGGER THEN 40</td>
+                                <td>OBESITY III</td>
                                 <td id="ooo"></td>
                             </tr>
                         </tbody>
@@ -116,6 +128,16 @@
             </form>
         </div>
     </div>
+
+    <footer>
+        <a href="https://github.com/evandroad/bmi">
+            <img src="https://img.icons8.com/glyph-neue/48/000000/github.png"/>
+        </a>
+        <a href="https://www.linkedin.com/in/evandro-abreu-domingues/">
+            <img src="https://img.icons8.com/color/48/000000/linkedin-circled--v1.png"/>
+        </a>
+        <div id="author"><span>crated by Evandro Abreu Domingues</span></div>
+    </footer>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -205,9 +227,9 @@
         }
 
         function limpar() {
-            document.getElementById('peso').value=''
-            document.getElementById('altura').value=''
-            document.getElementById("alert").innerHTML = ``
+            document.getElementById('peso').value = ''
+            document.getElementById('altura').value = ''
+            document.getElementById("alert").innerHTML = ''
             document.getElementById("alert").className = ''
             document.getElementById("m").className = ''
             document.getElementById("n").className = ''
@@ -215,6 +237,13 @@
             document.getElementById("o1").className = ''
             document.getElementById("o2").className = ''
             document.getElementById("o3").className = ''
+            document.getElementById('mm').innerText = ''
+            document.getElementById('nn').innerText = ''
+            document.getElementById('ss').innerText = ''
+            document.getElementById('o').innerText = ''
+            document.getElementById('oo').innerText = ''
+            document.getElementById('ooo').innerText = ''
+            document.getElementById('t').innerText = ''
             document.getElementById('altura').focus()
         }
     </script>    
